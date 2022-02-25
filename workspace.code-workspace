@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "B:\\workspaces"
+		}
+	],
+	"settings": {
+		"git.fetchOnPull": true
+	}
+}
