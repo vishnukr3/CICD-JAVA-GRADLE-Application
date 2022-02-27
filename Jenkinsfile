@@ -41,19 +41,35 @@ pipeline{
                     }
                 }
             } 
-            stage('indentifying misconfigs using datree in helm charts'){
+        stage('identifying misconfigs using datree in helm charts'){
             steps{
                 script{
 
                     dir('kubernetes/') {                                      // to go inside kubernetes dir
-                        withEnv(['DATREE_TOKEN=GJdx2cP2TCDyUY3EhQKgTc']) {
+                        withEnv(['DATREE_TOKEN=7kzZPYzuxZWctdJRmPYddz']) {         //I have added my datree token 
                               sh 'helm datree test myapp/'
                         }
                     }
                 }
             }
         }
-        }
+        stage("pushing the helm charts to nexus"){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {         //pushing to nexus needed credentials like we have done this in prev stages
+                          dir('kubernetes/') {     // all the command should be run inside kubernetes folder that why we use this step
+                             sh '''
+                                 helmversion=$( helm show chart myapp | grep version | cut -d: -f 2 | tr -d ' ')
+                                 tar -czvf  myapp-${helmversion}.tgz myapp/
+                                 curl -u admin:$docker_password http://34.125.214.226:8081/repository/helm-hosted/ --upload-file myapp-${helmversion}.tgz -v       
+                            '''                                                                                                                                       //The heml version could be get by "helm show chart" in kubernetes directory     
+                          }
+                    }
+                }
+            } 
+        }       
+
+    }
     post {
 		always {
 			mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", to: "deekshith.snsep@gmail.com";  
