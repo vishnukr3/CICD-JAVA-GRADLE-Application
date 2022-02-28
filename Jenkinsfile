@@ -67,7 +67,18 @@ pipeline{
                     }
                 }
             } 
-        }       
+        } 
+        stage('Deploying application on k8s cluster') {
+            steps {
+               script{
+                   withCredentials([kubeconfigFile(credentialsId: 'kubernetes-config', variable: 'KUBECONFIG')]) {
+                        dir('kubernetes/') {
+                          sh 'helm upgrade --install --set image.repository="34.125.214.226:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/ '    //it's a very inportant and efficient script ie,myjavaapp is our release name so whatever the release name if it is already there then it will upgraded otherwise it will do helm install.
+                        }
+                    }
+               }
+            }
+        }      
 
     }
     post {
