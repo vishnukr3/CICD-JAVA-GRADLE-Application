@@ -9,7 +9,7 @@ pipeline{
             }
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'sonar-token') {
+                    withSonarQubeEnv("sonar-server") {
                         sh 'chmod +x gradlew'      //used to execute permission to gradlew file
                         sh './gradlew sonarqube'   // used for checking gradlew with sonar rules
                     }    
