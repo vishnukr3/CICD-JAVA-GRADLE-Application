@@ -11,7 +11,7 @@ pipeline{
                 script{
                     withSonarQubeEnv("sonarqube-8.9.7") {
                         //sh "sudo chmod +777 /var/run/docker.sock"
-                        'chmod +x gradlew'      //used to execute permission to gradlew file
+                        sh 'chmod +x gradlew'      //used to execute permission to gradlew file
                         sh './gradlew sonarqube'   // used for checking gradlew with sonar rules
                     }    
                 }                                                                 
