@@ -13,7 +13,7 @@ pipeline{
                         sh 'pwd'
                         sh 'whoami'
                         sh 'chmod +x gradlew'      //used to execute permission to gradlew file
-                        sh 'cat build.gradle'
+                        sh 'ls;cat build.gradle'
                         sh './gradlew sonarqube'   // used for checking gradlew with sonar rules                   
                     }    
                 }                                                                 
