@@ -10,7 +10,7 @@ pipeline{
             agent none
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: "sonar-token") {  
+                    withSonarQubeEnv('sonarserver') {  
                         sh 'pwd ;ls;md5sum build.gradle'
                         
                         sh 'chmod +x gradlew'      //used to execute permission to gradlew file
