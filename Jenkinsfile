@@ -9,11 +9,11 @@ pipeline{
             }
             steps{
                 script{
-                    withSonarQubeEnv("sonarqube-8.9.7") {         
+                    withSonarQubeEnv("sonarqube-8.9.7") {       
                         sh 'pwd'
                         sh 'whoami'
-                        'chmod +x gradlew'      //used to execute permission to gradlew file
-                        './gradlew sonarqube'   // used for checking gradlew with sonar rules
+                        sh'chmod +x gradlew'      //used to execute permission to gradlew file
+                        sh'./gradlew sonarqube'   // used for checking gradlew with sonar rules
                          
                     }    
                 }                                                                 
