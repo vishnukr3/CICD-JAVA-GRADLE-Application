@@ -10,7 +10,7 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv("sonarqube-8.9.7") {
-                      dir('/var/lib/jenkins/workspace/java-gradle-app/') {
+                      //dir('/var/lib/jenkins/workspace/java-gradle-app/') {
                         //sh 'cd /var/lib/jenkins/workspace/java-gradle-app'
                         //sh "sudo chmod +x /var/run/docker.sock"
                         sh 'pwd'
