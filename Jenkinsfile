@@ -13,10 +13,10 @@ pipeline{
             agent none
             steps{
                 script{
-                    //withSonarQubeEnv(credentialsId: 'sonar-token') {
+                    withSonarQubeEnv() {
                             sh 'chmod +x gradlew'
                             sh './gradlew sonarqube'
-                    //}
+                    }
 
                     timeout(time: 1, unit: 'HOURS') {
                       def qg = waitForQualityGate()
