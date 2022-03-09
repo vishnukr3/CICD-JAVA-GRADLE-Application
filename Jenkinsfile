@@ -2,12 +2,12 @@ pipeline{
     agent any
     stages{
         stage("Sonar Quality Check"){
-            // agent {
-            //     docker {
-            //         image 'openjdk:11'
-            //     }
-            // }
-            agent none
+            agent {
+                docker {
+                    image 'openjdk:11'
+                 }
+             }
+           // agent none
             steps{
                 script{
                    withSonarQubeEnv("sonarserver") {  
