@@ -10,6 +10,7 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv("sonarqube-8.9.7") {
+                        sh "sudo chmod +x /var/run/docker.sock"
                         sh 'pwd'
                         sh 'whoami'
                         //sh 'chmod +x gradlew'      //used to execute permission to gradlew file
