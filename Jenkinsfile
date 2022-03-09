@@ -19,12 +19,12 @@ pipeline{
                     //}   
                 }
                 timeout(time: 1, unit: 'HOURS') {
-                      def qg = waitForQualityGate() {        //it a fn which get us JSON and it will stores on qg. and that fn will check for qiality analysis on our code
-                      if (qg.status != 'OK') {
-                           error "Pipeline aborted due to quality gate failure: ${qg.status}"   
+                    def waitForQualityGate()       
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"   
             
-                        }
-                      }    
+                    }
+                         
             
                 }                                                               
             }
