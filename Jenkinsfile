@@ -14,7 +14,7 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv() {
-                            sh "chmod 777  /var/run/docker.sock"
+                            sh "sudo chmod 777  /var/run/docker.sock"
                             sh 'chmod +x gradlew'
                             //sh './gradlew sonarqube'
                     }
