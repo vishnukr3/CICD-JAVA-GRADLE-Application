@@ -1,6 +1,6 @@
 pipeline{
     agent any 
-    customWorkspace = /var/lib/jenkins/workspace/java-gradle-app
+    //customWorkspace = /var/lib/jenkins/workspace/java-gradle-app
     environment{
         VERSION = "${env.BUILD_ID}"
     }
