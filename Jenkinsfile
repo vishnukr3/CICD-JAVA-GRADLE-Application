@@ -19,7 +19,7 @@ pipeline{
                             //ws('/var/lib/jenkins/workspace/java-gradle-app') {
                             sh 'chmod +x gradlew'
                             sh 'pwd'
-                            sh '/var/lib/jenkins/workspace/java-gradle-app/gradlew sonarqube'
+                            sh '/var/lib/jenkins/workspace/java-gradle-app@2/gradlew sonarqube'
                     }
                     //}
 
