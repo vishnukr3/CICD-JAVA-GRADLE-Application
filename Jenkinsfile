@@ -10,10 +10,11 @@ pipeline{
                     image 'openjdk:11'
                 }
             }
-            agent none
+            //agent none
             steps{
                 script{
                     withSonarQubeEnv() {
+                            sh "chmod 777  /var/run/docker.sock"
                             sh 'chmod +x gradlew'
                             //sh './gradlew sonarqube'
                     }
