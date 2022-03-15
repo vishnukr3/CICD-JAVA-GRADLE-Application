@@ -16,7 +16,8 @@ pipeline{
                     withSonarQubeEnv() {
                             //sh "sudo chmod 777  /var/run/docker.sock"
                             sh 'chmod +x gradlew'
-                            sh './gradlew sonarqube'
+                            sh 'pwd'
+                            //sh './gradlew sonarqube'
                     }
 
                    
